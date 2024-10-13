@@ -4,4 +4,16 @@ provider "aws" {
   secret_key = var.secret_key
 }
 
-data "aws_region" "current" {}
+module "ec2-instance" {
+  source        = "./modules/ec2"
+  name          = "web"
+  ami_id        = "ami-03fa85deedfcac80b"
+  instance_type = "t2.micro"
+  depends_on    = [module.vpc]
+}
+
+module "vpc" {
+  source            = "./modules/vpc"
+  cidr_block        = "10.0.0.0/16"
+  subnet_cidr_block = "10.0.1.0/24"
+}
