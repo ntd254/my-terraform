@@ -5,11 +5,11 @@ provider "aws" {
 }
 
 module "ec2-instance" {
-  source        = "./modules/ec2"
-  name          = "web"
-  ami_id        = "ami-03fa85deedfcac80b"
-  instance_type = "t2.micro"
-  depends_on    = [module.vpc]
+  source            = "./modules/ec2"
+  name              = "web"
+  ami_id            = "ami-03fa85deedfcac80b"
+  instance_type     = "t2.micro"
+  security_group_id = module.vpc.security_group_id
 }
 
 module "vpc" {

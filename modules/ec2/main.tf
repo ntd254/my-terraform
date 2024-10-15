@@ -28,6 +28,7 @@ resource "aws_instance" "web" {
   iam_instance_profile        = aws_iam_role.ec2_role.name
   key_name                    = aws_key_pair.deployer.key_name
   associate_public_ip_address = true
+  vpc_security_group_ids      = [var.security_group_id]
 
   tags = {
     Name = var.name
