@@ -7,9 +7,10 @@ provider "aws" {
 module "ec2-instance" {
   source            = "./modules/ec2"
   name              = "web"
-  ami_id            = "ami-03fa85deedfcac80b"
+  ami_id            = "ami-04b6019d38ea93034" // Amazon Linux 2023
   instance_type     = "t2.micro"
   security_group_id = module.vpc.security_group_id
+  subnet_id         = module.vpc.subnet_id
 }
 
 module "vpc" {
